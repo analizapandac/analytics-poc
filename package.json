@@ -4,10 +4,12 @@
   "description": "README.md",
   "main": "index.js",
   "engines": {
-    "node": "6.9.1"
+    "node": "6.9.1",
+    "npm": "3.10.8"
   },
   "scripts": {
-    "start": "webpack-dev-server -d --output-public-path=/dist/  --progress --colors"
+    "start": "webpack-dev-server -d --output-public-path=/dist/  --progress --colors",
+    "heroku-postbuild": "webpack -p --config ./webpack.dev.config.js --progress"
   },
   "repository": {
     "type": "git",
