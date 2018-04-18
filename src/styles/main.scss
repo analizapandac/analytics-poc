@@ -1,0 +1,123 @@
+@import '../../node_modules/bootstrap/dist/css/bootstrap.css';
+
+@import 'variables';
+
+body {
+	background: $body-bg-color;
+	font-size: $body-font-size;
+}
+
+#ua-header {
+	background-color: $header-bg-color;
+	padding: $header-padding;
+	margin-right: -15px;
+    margin-left: -15px;
+
+	#ua-page-title {
+		font-size: 21px;
+		margin-bottom: 0px;
+		color: #4e5765;
+	}
+}
+
+#ua-main-content-wrapper {
+	padding-top: $ua-main-content-wrapper-padding-top;
+	padding-bottom: $ua-main-content-wrapper-padding-bottom;
+	
+	.section-block {
+		background: $section-bg-color;
+		padding: $section-padding;
+		border-radius: $section-border-radius;
+	}
+
+	.ua-tab-links-wrapper {
+		margin-bottom: 25px;
+		li {
+			a {
+				cursor: pointer;
+				background: #f4f4f4;
+				text-align: center;
+				border-left: 1px solid $body-bg-color;
+				color: #4b5463;
+
+				.ua-tab-label {
+					color: #bebebe;
+				}
+				.ua-tab-value {
+					display: block;
+					font-size: 24px;
+				}
+
+				&.active {
+					background: #ffffff;
+					border-color: transparent;
+					border-left: 1px solid $body-bg-color;
+				}
+
+				&:hover {
+					border-bottom-color: transparent;
+				}
+			}
+
+			&:first-child {
+				a:not(.active) {
+					border-left: none;
+				}
+			}
+		}
+	}
+
+	.ua-loader-icon {
+		margin-top: 75px;
+	}
+
+	.tab-pane {
+		min-height: 140px;
+		padding: 10px 15px;
+	}
+
+	.table td, .table th {
+		vertical-align: middle;
+	}
+
+	.ua-info-box {
+		border: none;
+		margin-bottom: 30px;
+		.card-title {
+			font-size: 16px;
+			margin-bottom: 1rem;
+		}
+
+		.card-subtitle {
+			color: #ababab;
+		    font-size: 14px;
+		    margin-bottom: 0.25rem;
+		}
+
+		.card-text {
+			color: #4b5463;
+			@media (min-width: 768px) {
+				font-size: 18px;
+			}
+
+			@media (min-width: 992px) {
+				font-size: 18px;
+			}
+		}
+
+		.ua-stat:last-of-type {
+			border-left: 1px solid #ddd;
+		}
+	}
+
+	.small-gutters {
+	  margin-right: -12px;
+	  margin-left: -12px;
+
+	  > .col,
+	  > [class*="col-"] {
+	    padding-right: 6px;
+	    padding-left: 6px;
+	  }
+	}
+}

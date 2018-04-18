@@ -1,0 +1,47 @@
+{
+  "name": "analytics-poc",
+  "version": "1.0.0",
+  "description": "README.md",
+  "main": "index.js",
+  "engines": {
+    "node": "6.9.1"
+  },
+  "scripts": {
+    "start": "webpack-dev-server -d --output-public-path=/dist/  --progress --colors"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/analizapandac/analytics-poc.git"
+  },
+  "author": "Ana Liza Pandac",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/analizapandac/analytics-poc/issues"
+  },
+  "homepage": "https://github.com/analizapandac/analytics-poc#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "bootstrap": "^4.0.0",
+    "classnames": "^2.2.5",
+    "dotenv-webpack": "^1.5.5",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-loader": "^2.4.3",
+    "reactstrap": "^5.0.0-beta.3",
+    "webpack": "^4.6.0"
+  },
+  "devDependencies": {
+    "css-loader": "^0.28.11",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "node-sass": "^4.8.3",
+    "sass-loader": "^7.0.1",
+    "style-loader": "^0.20.3",
+    "webpack-cli": "^2.0.14",
+    "webpack-dev-server": "^3.1.3"
+  }
+}
