@@ -49,7 +49,7 @@ module.exports = {
 
   plugins: [
     new Dotenv({
-      path: './.env.local', // Path to .env file (this is the default) 
+      path: './.env.dev', // Path to .env file (this is the default) 
       safe: false // load .env.example (defaults to "false" which does not use dotenv-safe) 
     }),
 
