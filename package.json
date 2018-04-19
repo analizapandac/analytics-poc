@@ -10,7 +10,8 @@
   "scripts": {
     "start": "node server.js",
     "dev": "webpack-dev-server -d --output-public-path=/dist/  --progress --colors",
-    "heroku-postbuild": "NODE_ENV=production webpack -p --config ./webpack.dev.config.js --progress"
+    "heroku-postbuild": "NODE_ENV=production webpack -p --config ./webpack.dev.config.js --progress",
+    "deploy-s3": "NODE_ENV=production webpack -p --config ./webpack.dev.s3.config.js --progress",
   },
   "repository": {
     "type": "git",
