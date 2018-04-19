@@ -29,7 +29,6 @@
 	}
 
 	function onPageReady(method) {
-		console.log('called onPageReady');
 		if (typeof(eval(method)) === 'function') {
 		 	eval(method)();
 		} else {

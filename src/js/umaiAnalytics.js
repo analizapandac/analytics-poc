@@ -11,7 +11,6 @@ element.setAttribute('id', elementId);
 let umaiAnalytics = window.umaiAnalytics;
 
 if (!umaiAnalytics.SourceIsAnalyticsWebsite) {
-	console.log('hello there', umaiAnalytics);
 	let parentElement = document.getElementById(umaiAnalytics.appRenderParentElementId);
 	parentElement.appendChild(element);
 } else {

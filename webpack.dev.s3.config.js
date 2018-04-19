@@ -8,6 +8,7 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
 const S3Plugin = require('webpack-s3-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -58,7 +59,7 @@ module.exports = {
       threshold: 10240,
       minRatio: 0.8
     }),
-    
+
     new S3Plugin({
       // s3Options are required
       s3Options: {
@@ -82,12 +83,12 @@ module.exports = {
             return 'text/plain'
         } 
       },
-      basePath: 'dist',
-	      directory: path.resolve('dist')
+      	basePath: 'dist',
+	    directory: path.resolve('dist')
 	}),
       
     new Dotenv({
-      path: './.env.dev', // Path to .env file (this is the default) 
+      path: './.env.devs3', // Path to .env file (this is the default) 
       safe: false // load .env.example (defaults to "false" which does not use dotenv-safe) 
     }),
 
@@ -95,6 +96,25 @@ module.exports = {
       filename: 'umaiAnalytics.min.css',
       allChunks: true
     }),
+
+        new UglifyJSPlugin({
+      uglifyOptions: {
+        compress: {
+          unused: true,
+          dead_code: true,
+          warnings: false,
+          drop_debugger: true,
+          conditionals: true,
+          evaluate: true,
+          drop_console: true,
+          sequences: true,
+          booleans: true
+        },
+        output: {
+          comments: false
+        }
+      }
+    }), // to compile the ES2015+ code.
 
   ]
 }

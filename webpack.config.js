@@ -6,6 +6,7 @@ const path = require('path');
 const Dotenv = require('dotenv-webpack');
 const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -58,6 +59,24 @@ module.exports = {
       filename: 'umaiAnalytics.min.css',
       allChunks: true
     }),
-
+    
+    new UglifyJSPlugin({
+      uglifyOptions: {
+        compress: {
+          unused: true,
+          dead_code: true,
+          warnings: false,
+          drop_debugger: true,
+          conditionals: true,
+          evaluate: true,
+          drop_console: true,
+          sequences: true,
+          booleans: true
+        },
+        output: {
+          comments: false
+        }
+      }
+    }), // to compile the ES2015+ code.
   ]
 }
