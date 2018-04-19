@@ -6,6 +6,7 @@ const path = require('path');
 const Dotenv = require('dotenv-webpack');
 const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const CompressionPlugin = require("compression-webpack-plugin");
 const S3Plugin = require('webpack-s3-plugin');
 
 module.exports = {
@@ -49,31 +50,39 @@ module.exports = {
   },
 
   plugins: [
+		
+	new CompressionPlugin({
+      asset: "[path].gz[query]",
+      algorithm: "gzip",
+      test: /\.(js|html|css)$/,
+      threshold: 10240,
+      minRatio: 0.8
+    }),
+    
+    new S3Plugin({
+      // s3Options are required
+      s3Options: {
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+        region: process.env.AWS_BUCKET_REGION
+      },
+      s3UploadOptions: {
+        Bucket: process.env.AWS_BUCKET,
+        ContentEncoding(fileName) {
+          if (/\.gz/.test(fileName))
+            return 'gzip'
+        },
 
-      new S3Plugin({
-	      // s3Options are required
-	      s3Options: {
-	        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-	        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-	        region: process.env.AWS_BUCKET_REGION
-	      },
-	      s3UploadOptions: {
-	        Bucket: process.env.AWS_BUCKET,
-	        ContentEncoding(fileName) {
-	          if (/\.gz/.test(fileName))
-	            return 'gzip'
-	        },
-
-	        ContentType(fileName) {
-	          if (/\.js/.test(fileName)) 
-	            return 'application/javascript'
-	          else if (/\.css/.test(fileName))
-	            return 'text/css'
-	          else
-	            return 'text/plain'
-	        } 
-	      },
-	      basePath: 'dist',
+        ContentType(fileName) {
+          if (/\.js/.test(fileName)) 
+            return 'application/javascript'
+          else if (/\.css/.test(fileName))
+            return 'text/css'
+          else
+            return 'text/plain'
+        } 
+      },
+      basePath: 'dist',
 	      directory: path.resolve('dist')
 	}),
       
