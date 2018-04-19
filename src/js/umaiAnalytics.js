@@ -7,6 +7,15 @@ const timestamp = Date.now();
 const elementId = `umaiAnalyticsElement-${timestamp}`;
 let element = document.createElement('div')
 element.setAttribute('id', elementId);
-document.body.appendChild(element);
+
+let umaiAnalytics = window.umaiAnalytics;
+
+if (!umaiAnalytics.SourceIsAnalyticsWebsite) {
+	console.log('hello there', umaiAnalytics);
+	let parentElement = document.getElementById(umaiAnalytics.appRenderParentElementId);
+	parentElement.appendChild(element);
+} else {
+	document.body.appendChild(element);
+}
 
 ReactDOM.render(<App timestamp={Date.now()} modalIsOpen={true} />, document.getElementById(elementId))
