@@ -13,7 +13,11 @@ body {
 	padding: $header-padding;
 	margin-right: -15px;
     margin-left: -15px;
-
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,0.1) !important;
 	#ua-page-title {
 		font-size: 21px;
 		margin-bottom: 0px;

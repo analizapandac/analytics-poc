@@ -10,11 +10,13 @@ element.setAttribute('id', elementId);
 
 let umaiAnalytics = window.umaiAnalytics;
 
-if (!umaiAnalytics.SourceIsAnalyticsWebsite) {
-	let parentElement = document.getElementById(umaiAnalytics.appRenderParentElementId);
-	parentElement.appendChild(element);
-} else {
-	document.body.appendChild(element);
-}
+umaiAnalytics.showAnalytics = function() {
+	if (window.umaiAnalytics.hasOwnProperty('SourceIsAnalyticsWebsite') && !umaiAnalytics.SourceIsAnalyticsWebsite) {
+		let parentElement = document.getElementById(umaiAnalytics.appRenderParentElementId);
+		parentElement.appendChild(element);
+	} else {
+		document.body.appendChild(element);
+	}
 
-ReactDOM.render(<App timestamp={Date.now()} modalIsOpen={true} />, document.getElementById(elementId))
+	ReactDOM.render(<App timestamp={Date.now()} />, document.getElementById(elementId))
+}

@@ -29,20 +29,21 @@
 	}
 
 	function onPageReady(method) {
+		console.log('called onPageReady', typeof(eval(method)));
 		if (typeof(eval(method)) === 'function') {
 		 	eval(method)();
 		} else {
-			setTimeout(function () {
-			onPageReady(method);
-		}), 50 }
+			setTimeout(function() {
+				onPageReady(method);
+			}, 50);
+		}
 	}
 
-	umaiAnalytics.showAnalytics = function () {
-		//if(umaiAnalytics.validConfig) { onPageReady("umaiAnalytics.showAnalytics"); }
+	umaiAnalytics.initAnalytics = function () {
+		if(umaiAnalytics.validConfig) { onPageReady("umaiAnalytics.showAnalytics"); }
 	}
 	
 	umaiAnalytics.config = function(config) {
-		console.log('called config', config);
 		umaiAnalytics.apiKey = null;
 		umaiAnalytics.validConfig = false;
 		umaiAnalytics.appRenderParentElementId = null;
@@ -53,6 +54,9 @@
 
 		if (config !== null && typeof config === 'object') {
 			umaiAnalytics.validConfig = true;
+			if ('SourceIsAnalyticsWebsite' in config) {
+				umaiAnalytics.SourceIsAnalyticsWebsite = config.SourceIsAnalyticsWebsite;
+			}
 			if ('appRenderParentElementId' in config){
 				umaiAnalytics.appRenderParentElementId = config.appRenderParentElementId;
 			} else {
